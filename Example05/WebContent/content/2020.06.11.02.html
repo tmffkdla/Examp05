@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//재귀함수(recursive function)
+	var k=0;
+	function aaa(){
+		console.log("aaa 함수가 실행 됩니다.");
+		k++;
+		if(k!==10){
+			aaa();
+		}	
+	}
+	aaa();
+	
+	setInterval(function(){
+		document.write(new Date().toLocaleString());
+	},1000);
+	setTimeout(function(){
+		document.write(new Date().toLocaleString());
+	},1000);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var arr1 = [10,20,30];
+	var arr2 = arr1;
+	arr2[1]=100;
+	console.log(arr1[1]);
+	var obj1 = {a:100,b:200,c:300};
+	var obj2 = obj1;
+	obj2.a=500;
+	console.log(obj1.a);
+	new Object();
+	//자동차를 설계하고 싶다
+	// 특징: 스피드, 사이즈, 색상
+	// 기능: 출발하다, 정지하다, 가속하다
+	function MyCar(){
+		this.speed=0;
+		this.size=500;
+		this.color;
+		MyCar.prototype.shareVar=10000;
+		MyCar.prototype.start=function(){
+			document.write(this.color+"색의 "+this.name+"가 출발합니다.");
+			document.write("<br>");
+		}
+		MyCar.prototype.stop=function(){
+			document.write(this.color+"색의 "+this.name+"가 정차합니다");
+			document.write("<br>");
+		}
+		MyCar.prototype.addSpeed=function(speed){this.speed+=speed;
+		document.write(this.color+"색의 "+this.name+"의 속도가 "+this.speed+"으로 변경되었습니다.");
+		document.write("<br>");
+		}
+	}
+	var car1 = new MyCar();
+	var car2 = new MyCar();
+	var car3 = new MyCar();
+	var car4 = new MyCar();
+	var car5 = new MyCar();
+	car1.name="형 차"; car2.name="동생 차"; car3.name="언니 차"; car4.name="고모 차"; car5.name="조카 차";
+	car1.color="노랑"; car2.color="빨강"; car3.color="검정"; car4.color="하양"; car5.color="핑크";
+	car1.start(); car2.start(); car3.start();car4.start(); car5.start();
+	car1.addSpeed(30); car2.addSpeed(20); car3.addSpeed(50); car4.addSpeed(10); car5.addSpeed(20);
+	car1.stop(); car2.stop(); car3.stop(); car4.stop(); car5.stop();
+	console.log("name" in car3);
+	console.log("aaa" in car3);
+	delete car3.name; //객체내부 속성 지우기
+	console.log("name" in car3); //객체 내부 속성 존재 검사
+	console.log(MyCar.prototype.shareVar);
+	console.log(car5.shareVar);//10000
+	car5.shareVar=50000;
+	console.log(car5.shareVar);
+	console.log(car4.shareVar);
+	Object.prototype.myshare=5;
+	Object.prototype.testFun=function(){alert("오브젝트 함수가 실행 됩니다.")}
+	car4.testFun=function(){alert("카4에서만 실행되는 함수입니다.")}
+	console.log(car5.myshare);
+	car1.testFun();
+	car4.testFun();
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

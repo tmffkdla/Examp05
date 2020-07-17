@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function PigSave(pid,ppw){
+		this.pid=pid;this.ppw=ppw;
+		var totalMoney=0;
+		this.getTotalMoney=function(){return totalMoney;}//토탈 금액확인
+		this.setSaveMoney=function(money){totalMoney+=money}//저축
+		this.setFetchMoney=function(money,id,pw){
+			if(id==this.pid&&pw==this.ppw){
+				if(money>totalMoney){
+					alert("잔액이 부족합니다.");
+					return;
+				}
+				totalMoney-=money
+			}else{
+				alert("사용자 인증에 실패");
+			}		
+		};
+	}
+	var psobj1 = new PigSave('철수','12345');
+	var psobj2 = new PigSave('영희','54321');
+	psobj1.setSaveMoney(5000);
+	psobj2.setSaveMoney(10000);
+	psobj1.setFetchMoney(3000,"철수","12345");
+	psobj2.setFetchMoney(6000,"영희","54321");
+	/*
+	psobj1.totalMoney=500;
+	psobj2.totalMoney=1000;
+	psobj1.totalMoney=-10000;
+	*/
+	console.log(psobj1.getTotalMoney());
+	console.log(psobj2.getTotalMoney());
+	console.log(psobj1.totalMoney);
+	
+	function objTest(){//지역변수로 선언되면 객체로 접근할 수 없다.
+		var a=100;
+		this.getA=function(){return a}
+		this.setA=function(val){a=val}
+	}
+	var obj = new objTest();
+	console.log(obj.a);
+	obj.setA(1000);
+	console.log(obj.getA());
+</script>
+</head>
+<body>
+
+</body>
+</html>

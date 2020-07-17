@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<script>
+var userInput=prompt("연산할 구구단의 단을 입력하세요 (예제:3-5)","2-9")
+var o=userInput.indexOf('-')
+var p=[];
+if(o<=-1){
+	p[0]=userInput; p[1]=userInput;
+}else{
+	p=userInput.split('-');
+}
+var body=document.getElementsByTagName('body')[0];
+var y="";
+	for(var i=p[0]; i<=p[1]; i++){
+		var u="";
+		for(var j=1; j<10; j++){
+			u+=i+"*"+j+"="+(i*j)+"<br>";
+		} y+= 
+			'<div style="text-align:right; float:left; border:1px solid black;">'
+			+u+"<div>";
+	}
+	console.log(y);
+	body.innerHTML=y;
+
+</script>
+</html>

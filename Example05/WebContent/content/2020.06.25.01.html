@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	//정규표현식 regexp 활용
+	//1. 주민등록 번호 검증
+		//-- 주민등록 번호 패턴 : 숫자로 시작한다. 앞 6개의 숫자,하이픈,성별,뒤 7개의 숫자 
+	var pattern1 = /^\d{6}-[1-6]\d{6}/;
+	var arr1 = "200203-4150713".match(pattern1);
+	console.log(arr1);
+		//-- 이메일 형식 패턴 : 숫자로 시작하지 않는다. @가 붙는다.
+						// .이 한개 일 때  . 뒤애 영문이 3글자 aaa.com 
+						//..이 두개 일 때 . 뒤에 영문이 2글자 aaa.co.kr
+						//@뒤는 숫자로 시작하지 않는다.
+	var pattern2 = /^[^0-9].*@[^0-9].*\.([a-zA-Z]{2}\.[a-zA-Z]{2}|[a-zA-z]{3})$/i;
+	var arr2 = "aaa@aaa.co.kr".match(pattern2);
+	console.log(arr2);
+	//-- 가입시 아이디 비밀번호 규칙을 만듭니다.
+	// 규칙1. 비밀번호는 8글자 이상 13글자 이하로 생성해야 된다.
+		//lentgh >=8 && length <= 13
+	// 규칙2. 비밀번호는 특수문자 # 또는 @ 또는 *을 한개 이상 조합해야 된다.
+		// [\#\@\*]
+	// 규칙3. 비밀번호는 대문자를 한개 이상 조합해야 된다.
+		//[A-Z]
+	// 규칙4. 비밀번호는 숫자로 시작할수 없다.
+		//[^0-9]
+	//search 메소드 활용 return boolean
+	var mypass1 = "ar#Aza33";//pass
+	var mypass2 = "1ar#Az33";//fail
+	var mypass3 = "ar#Az33aaettrsc";//fail
+	var mypass4 = "arAz33ee33";//fail
+	var mypass5 = "ar#3zee33";//fail
+	
+	checkPassword(mypass1,1)
+	checkPassword(mypass2,2)
+	checkPassword(mypass3,3)
+	checkPassword(mypass4,4)
+	checkPassword(mypass5,5)
+	function checkPassword(pwd,num){
+		var chk = "fail";
+		var p1 = /[\#\@\*]/; 
+		var p2 = /[A-Z]/;
+		var p3 = /^[^0-9]/;
+		var c1 = pwd.length >= 8 && pwd.length <= 13 
+		var c2 = pwd.search(p1)>-1;
+		var c3 = pwd.search(p2)>-1;
+		var c4 = pwd.search(p3)>-1;
+		if( c1&& c2&& c3&& c4){
+			chk= "pass";
+		}else{
+			var msg = "알수 없는 오류";
+			switch(false){
+				case c1: msg=num+": 비밀번호는 8~13글자 이내로 입력하세요.";break;
+				case c2: msg=num+": 특수문자 #또는 @또는 *을 한개 이상 입력하세요.";break;
+				case c3: msg=num+": 대문자를 한개 이상 포함해야 합니다.";break;
+				case c4: msg=num+": 숫자로 시작할 수 없습니다.";break;
+			}
+			alert(msg);
+		}
+			
+		console.log(num+":"+chk);
+	} 
+	//replace(regExp,newCher)
+	var testStr1="안녕하세요. 성명:홍길동 그리고 성명:조수석";
+	var res1 = testStr1.replace(/성명:.../g,function(val){
+		return val+" 씨";
+	});
+	console.log(res1);
+	//splite(resExp)
+	var testStr2 = "홍길동 asx 조수석 asb 네이버 asc 카카오 asf 기사님 ";
+	var testArr2 = testStr2.split(/as./g);
+	console.log(testArr2);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>
